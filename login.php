@@ -2,22 +2,22 @@
 session_start();
 include "db.php";
 
-if (isset($_SESSION['user'])) {// jika sudah login
-    header("Location: index.php");// langsung ke halaman utama
-    exit;// hentikan eksekusi
+if (isset($_SESSION['user'])) {
+    header("Location: index.php");
+    exit;
 }
 
-if (isset($_POST['login'])) {   // jika tombol login ditekan
-    $username = $_POST['username'];// username
-    $password = md5($_POST['password']);// password (md5)
+if (isset($_POST['login'])) {  
+    $username = $_POST['username'];
+    $password = md5($_POST['password']);
 
-    $q = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND password='$password'");// cek username dan password
-    if (mysqli_num_rows($q) > 0) {// jika ada
-        $_SESSION['user'] = $username;// set session
-        header("Location: index.php");// ke halaman utama
-        exit;// hentikan eksekusi
+    $q = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND password='$password'");
+    if (mysqli_num_rows($q) > 0) {
+        $_SESSION['user'] = $username;
+        header("Location: index.php");
+        exit;
     } else {
-        $error = "❌ Username atau password salah!";// pesan error jika username atau password salah
+        $error = "❌ Username atau password salah!";
     }
 }
 ?>

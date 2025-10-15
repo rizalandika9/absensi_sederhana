@@ -1,13 +1,13 @@
 <?php
 session_start();
-if (!isset($_SESSION['user'])) {// jika belum login 
-    header("Location: login.php");// kembali ke halaman login
-    exit;// hentikan eksekusi
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
 }
-include "db.php";// koneksi database
+include "db.php";
 
 if (isset($_GET['id'])) {// jika ada id di URL
-    $id = $_GET['id'];// dapatkan id
+    $id = $_GET['id'];
     $q = mysqli_query($conn, "SELECT absensi.*, siswa.nama 
     FROM absensi JOIN siswa ON absensi.siswa_id = siswa.id WHERE absensi.id=$id");
     $data = mysqli_fetch_assoc($q);// ambil data absensi

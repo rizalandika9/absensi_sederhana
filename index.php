@@ -1,30 +1,29 @@
 <?php
-session_start(); // mulai session
+session_start(); 
 if (!isset($_SESSION['user'])) {
-    header("Location: login.php"); // kembali ke halaman login
-    exit; // hentikan eksekusi jika tidak login
+    header("Location: login.php"); 
+    exit; 
 }
-include "db.php"; // koneksi database
+include "db.php"; 
 
-if (isset($_POST['simpan'])) { // jika tombol simpan ditekan
-    $nama   = $_POST['nama']; // nama siswa
-    $materi = $_POST['materi']; // materi pelajaran
-    $status = $_POST['status']; // status kehadiran
-    $tanggal = $_POST['tanggal']; // tanggal absensi
+if (isset($_POST['simpan'])) { 
+    $nama   = $_POST['nama']; 
+    $materi = $_POST['materi']; 
+    $status = $_POST['status']; 
+    $tanggal = $_POST['tanggal']; 
 
-    // cek siswa
-    $cek = mysqli_query($conn, "SELECT * FROM siswa WHERE nama='$nama'"); // cek apakah siswa sudah ada
-    if (mysqli_num_rows($cek) == 0) { // jika siswa belum ada, tambahkan
-        mysqli_query($conn, "INSERT INTO siswa (nama) VALUES ('$nama')"); // tambahkan siswa baru
-        $siswa_id = mysqli_insert_id($conn); // dapatkan id siswa baru
-    } else { // jika siswa sudah ada, ambil id-nya
-        $s = mysqli_fetch_assoc($cek); // ambil data siswa
-        $siswa_id = $s['id']; // dapatkan id siswa yang sudah ada
+    
+    $cek = mysqli_query($conn, "SELECT * FROM siswa WHERE nama='$nama'"); 
+    if (mysqli_num_rows($cek) == 0) { 
+        mysqli_query($conn, "INSERT INTO siswa (nama) VALUES ('$nama')"); 
+        $siswa_id = mysqli_insert_id($conn); 
+        $s = mysqli_fetch_assoc($cek); 
+        $siswa_id = $s['id']; 
     }
 
     mysqli_query($conn, "INSERT INTO absensi (siswa_id, materi, status, tanggal) VALUES 
-    ('$siswa_id', '$materi', '$status', '$tanggal')"); // simpan data absensi
-    echo "<p class='success'>✅ Absensi berhasil disimpan!</p>"; // tampilkan pesan sukses
+    ('$siswa_id', '$materi', '$status', '$tanggal')");
+    echo "<p class='success'>✅ Absensi berhasil disimpan!</p>";
 }
 ?>
 <!DOCTYPE html>
