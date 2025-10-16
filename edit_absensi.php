@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])) {
 }
 include "db.php";
 
-if (isset($_GET['id'])) {// jika ada id di URL
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $q = mysqli_query($conn, "SELECT absensi.*, siswa.nama 
     FROM absensi JOIN siswa ON absensi.siswa_id = siswa.id WHERE absensi.id=$id");
@@ -23,7 +23,7 @@ if (isset($_POST['update'])) {
     $status = $_POST['status'];
     $tanggal = $_POST['tanggal'];
 
-    mysqli_query($conn, "UPDATE absensi SET materi='$materi', status='$status', tanggal='$tanggal' WHERE id=$id");// update data absensi
+    mysqli_query($conn, "UPDATE absensi SET materi='$materi', status='$status', tanggal='$tanggal' WHERE id=$id");
     echo "<p class='success'>✅ Data absensi berhasil diperbarui!</p>";
     echo "<p><a href='riwayat.php'>⬅️ Kembali ke Riwayat</a></p>";
     exit;
