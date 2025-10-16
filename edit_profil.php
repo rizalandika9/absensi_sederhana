@@ -1,19 +1,19 @@
 <?php
 session_start();
-if (!isset($_SESSION['user'])) {// jika belum login
-    header("Location: login.php");// kembali ke halaman login
-    exit;// hentikan eksekusi
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
 }
-include "db.php";// koneksi database
+include "db.php";
 
-if (isset($_POST['update'])) {// jika tombol update ditekan
-    $id = $_POST['id'];// dapatkan id siswa
-    $nama = $_POST['nama'];// nama baru
-    mysqli_query($conn, "UPDATE siswa SET nama='$nama' WHERE id=$id");// update nama siswa
-    echo "<p class='success'>✅ Profil siswa berhasil diperbarui!</p>";//tampilkan pesan sukses
+if (isset($_POST['update'])) {
+    $id = $_POST['id'];
+    $nama = $_POST['nama'];
+    mysqli_query($conn, "UPDATE siswa SET nama='$nama' WHERE id=$id");
+    echo "<p class='success'>✅ Profil siswa berhasil diperbarui!</p>";
 }
 
-$siswa = mysqli_query($conn, "SELECT * FROM siswa ORDER BY nama ASC");// ambil semua data siswa
+$siswa = mysqli_query($conn, "SELECT * FROM siswa ORDER BY nama ASC");
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -33,8 +33,8 @@ $siswa = mysqli_query($conn, "SELECT * FROM siswa ORDER BY nama ASC");// ambil s
         <label>Pilih Siswa:</label>
         <select name="id" required>
             <option value="">-- Pilih --</option>
-            <?php while($row = mysqli_fetch_assoc($siswa)) { // ambil semua data siswa?>
-                <option value="<?php echo $row['id']; ?>"><?php echo $row['nama'];// tampilkan nama ?></option>
+            <?php while($row = mysqli_fetch_assoc($siswa)) { ?>
+                <option value="<?php echo $row['id']; ?>"><?php echo $row['nama']; ?></option>
             <?php } ?>
         </select>
         <label>Nama Baru:</label>

@@ -6,10 +6,10 @@ if (!isset($_SESSION['user'])) {
 }
 include "db.php";
 
-if (isset($_GET['hapus'])) { // jika tombol hapus ditekan
-    $id = $_GET['hapus']; // dapatkan id siswa
-    mysqli_query($conn, "DELETE FROM siswa WHERE id=$id"); // hapus data siswa
-    echo "<p class='success'>✅ Data siswa & semua absensinya berhasil dihapus!</p>"; // tampilkan pesan sukses
+if (isset($_GET['hapus'])) { 
+    $id = $_GET['hapus']; 
+    mysqli_query($conn, "DELETE FROM siswa WHERE id=$id"); 
+    echo "<p class='success'>✅ Data siswa & semua absensinya berhasil dihapus!</p>"; 
 }
 ?>
 <!DOCTYPE html>
@@ -29,11 +29,11 @@ if (isset($_GET['hapus'])) { // jika tombol hapus ditekan
     <div class="container">
         <h2>📋 Riwayat Absensi</h2>
         <?php
-        $q = mysqli_query($conn, "SELECT absensi.id, absensi.tanggal, absensi.materi, absensi.status,siswa.nama, siswa.id AS siswa_id FROM absensi JOIN siswa ON absensi.siswa_id = siswa.id ORDER BY absensi.tanggal DESC"); // ambil semua data absensi dengan nama siswa terkait 
-        if (mysqli_num_rows($q) > 0) { // jika ada data absensi 
-            echo "<table>"; // buat tabel
-            echo "<tr><th>Nama</th><th>Materi</th><th>Status</th><th>Tanggal</th><th>Aksi</th><th>Aksi</th></tr>"; // header tabel
-            while ($row = mysqli_fetch_assoc($q)) { // tampilkan semua data absensi 
+        $q = mysqli_query($conn, "SELECT absensi.id, absensi.tanggal, absensi.materi, absensi.status,siswa.nama, siswa.id AS siswa_id FROM absensi JOIN siswa ON absensi.siswa_id = siswa.id ORDER BY absensi.tanggal DESC"); 
+        if (mysqli_num_rows($q) > 0) { 
+            echo "<table>"; 
+            echo "<tr><th>Nama</th><th>Materi</th><th>Status</th><th>Tanggal</th><th>Aksi</th><th>Aksi</th></tr>"; 
+            while ($row = mysqli_fetch_assoc($q)) { 
                 echo "<tr>
                     <td>" . $row['nama'] . "</td>
                     <td>" . $row['materi'] . "</td>
@@ -45,7 +45,7 @@ if (isset($_GET['hapus'])) { // jika tombol hapus ditekan
                     <td>
                     <a href='riwayat.php?hapus=" . $row['siswa_id'] . "' onclick=\"return confirm('Yakin ingin menghapus data siswa ini beserta semua absensinya?');\">❌ Hapus</a>
                     </td>
-                  </tr>";
+                </tr>";
             }
             echo "</table>";
         } else {

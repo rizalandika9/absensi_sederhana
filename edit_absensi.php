@@ -10,22 +10,22 @@ if (isset($_GET['id'])) {// jika ada id di URL
     $id = $_GET['id'];
     $q = mysqli_query($conn, "SELECT absensi.*, siswa.nama 
     FROM absensi JOIN siswa ON absensi.siswa_id = siswa.id WHERE absensi.id=$id");
-    $data = mysqli_fetch_assoc($q);// ambil data absensi
-}// jika tidak ada id, kembali ke riwayat
+    $data = mysqli_fetch_assoc($q);
+}
 else {
     header("Location: riwayat.php");// kembali ke halaman riwayat
     exit;
 }
 
-if (isset($_POST['update'])) {// jika tombol update ditekan
-    $id = $_GET['id'];// dapatkan id dari URL
-    $materi = $_POST['materi'];// materi
-    $status = $_POST['status'];// status
-    $tanggal = $_POST['tanggal'];// tanggal
+if (isset($_POST['update'])) {
+    $id = $_GET['id'];
+    $materi = $_POST['materi'];
+    $status = $_POST['status'];
+    $tanggal = $_POST['tanggal'];
 
     mysqli_query($conn, "UPDATE absensi SET materi='$materi', status='$status', tanggal='$tanggal' WHERE id=$id");// update data absensi
-    echo "<p class='success'>✅ Data absensi berhasil diperbarui!</p>";// tampilkan pesan sukses
-    echo "<p><a href='riwayat.php'>⬅️ Kembali ke Riwayat</a></p>";// link kembali ke riwayat
+    echo "<p class='success'>✅ Data absensi berhasil diperbarui!</p>";
+    echo "<p><a href='riwayat.php'>⬅️ Kembali ke Riwayat</a></p>";
     exit;
 }
 ?>
