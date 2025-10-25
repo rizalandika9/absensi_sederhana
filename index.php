@@ -1,9 +1,9 @@
 <?php
-// index.php (revisi penuh)
-// pastikan db.php ada di folder yang sama
 session_start();
-// jika pakai login/proteksi, aktifkan baris berikut:
-// if (!isset($_SESSION['user'])) { header("Location: login.php"); exit; }
+if (!isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
+}
 
 include "db.php";
 
@@ -49,60 +49,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="utf-8">
     <title>Absensi - Techno Informatika</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header>
-    <img src="images/logo.png" alt="Logo Techno Informatika" style="height:48px; margin-right:12px;">
-    <h1>Techno Informatika - Sistem Absensi</h1>
-</header>
+    <header>
+        <img src="images/logo.png" alt="Logo Techno Informatika" style="height:48px; margin-right:12px;">
+        <h1>Techno Informatika - Sistem Absensi</h1>
+    </header>
 
-<div class="container">
-    <h2>📝 Form Absensi</h2>
+    <div class="container">
+        <h2>📝 Form Absensi</h2>
 
-    <?php if (!empty($error)): ?>
-        <p class="error"><?php echo $error; ?></p>
-    <?php endif; ?>
+        <?php if (!empty($error)): ?>
+            <p class="error"><?php echo $error; ?></p>
+        <?php endif; ?>
 
-    <?php if (!empty($success)): ?>
-        <p class="success"><?php echo $success; ?></p>
-    <?php endif; ?>
+        <?php if (!empty($success)): ?>
+            <p class="success"><?php echo $success; ?></p>
+        <?php endif; ?>
 
-    <form method="POST" action="">
-        <label>Nama Siswa:</label>
-        <input type="text" name="nama" value="<?php echo isset($nama) ? htmlspecialchars($nama, ENT_QUOTES) : ''; ?>" required>
+        <form method="POST" action="">
+            <label>Nama Siswa:</label>
+            <input type="text" name="nama" value="<?php echo isset($nama) ? htmlspecialchars($nama, ENT_QUOTES) : ''; ?>" required>
 
-        <label>Materi:</label>
-        <select name="materi" required>
-            <option value="Ms Word" <?php if(isset($materi) && $materi=='Ms Word') echo 'selected'; ?>>Ms Word</option>
-            <option value="Ms Excel" <?php if(isset($materi) && $materi=='Ms Excel') echo 'selected'; ?>>Ms Excel</option>
-            <option value="Desain Grafis" <?php if(isset($materi) && $materi=='Desain Grafis') echo 'selected'; ?>>Desain Grafis</option>
-            <option value="Pemrograman Web" <?php if(isset($materi) && $materi=='Pemrograman Web') echo 'selected'; ?>>Pemrograman Web</option>
-        </select>
+            <label>Materi:</label>
+            <select name="materi" required>
+                <option value="Ms Word" <?php if (isset($materi) && $materi == 'Ms Word') echo 'selected'; ?>>Ms Word</option>
+                <option value="Ms Excel" <?php if (isset($materi) && $materi == 'Ms Excel') echo 'selected'; ?>>Ms Excel</option>
+                <option value="Desain Grafis" <?php if (isset($materi) && $materi == 'Desain Grafis') echo 'selected'; ?>>Desain Grafis</option>
+                <option value="Pemrograman Web" <?php if (isset($materi) && $materi == 'Pemrograman Web') echo 'selected'; ?>>Pemrograman Web</option>
+            </select>
 
-        <label>Status:</label>
-        <select name="status" required>
-            <option value="Hadir" <?php if(isset($status) && $status=='Hadir') echo 'selected'; ?>>Hadir</option>
-            <option value="Izin" <?php if(isset($status) && $status=='Izin') echo 'selected'; ?>>Izin</option>
-            <option value="Sakit" <?php if(isset($status) && $status=='Sakit') echo 'selected'; ?>>Sakit</option>
-            <option value="Alpa" <?php if(isset($status) && $status=='Alpa') echo 'selected'; ?>>Alpa</option>
-        </select>
+            <label>Status:</label>
+            <select name="status" required>
+                <option value="Hadir" <?php if (isset($status) && $status == 'Hadir') echo 'selected'; ?>>Hadir</option>
+                <option value="Izin" <?php if (isset($status) && $status == 'Izin') echo 'selected'; ?>>Izin</option>
+                <option value="Sakit" <?php if (isset($status) && $status == 'Sakit') echo 'selected'; ?>>Sakit</option>
+                <option value="Alpa" <?php if (isset($status) && $status == 'Alpa') echo 'selected'; ?>>Alpa</option>
+            </select>
 
-        <label>Tanggal:</label>
-        <input type="date" name="tanggal" value="<?php echo isset($tanggal) ? htmlspecialchars($tanggal) : date('Y-m-d'); ?>" required>
+            <label>Tanggal:</label>
+            <input type="date" name="tanggal" value="<?php echo isset($tanggal) ? htmlspecialchars($tanggal) : date('Y-m-d'); ?>" required>
 
-        <button type="submit">Simpan</button>
-    </form>
-    <br>
+            <button type="submit">Simpan</button>
+        </form>
+        <br>
 
-    <p><a href="riwayat.php">📋 Lihat Riwayat Absensi</a></p>
-    <br>
-    <p><a href="edit_profil.php">👤 Edit Profil Siswa</a></p>
-    <br>
-    <p><a href="logout.php">🚪 Logout</a></p>
-</div>
+        <p><a href="riwayat.php">📋 Lihat Riwayat Absensi</a></p>
+        <br>
+        <p><a href="edit_profil.php">👤 Edit Profil Siswa</a></p>
+        <br>
+        <p><a href="logout.php">🚪 Logout</a></p>
+    </div>
 </body>
+
 </html>
