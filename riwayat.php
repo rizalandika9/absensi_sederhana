@@ -52,6 +52,7 @@ if (isset($_GET['hapus'])) {
             echo "<p>❌ Tidak ada data absensi.</p>";
         }
         ?>
+        <br>
         <p><a href="index.php">⬅️ Kembali ke Absensi</a></p>
     </div>
 </body>

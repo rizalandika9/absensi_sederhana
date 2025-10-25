@@ -68,6 +68,7 @@ if (isset($_POST['update'])) {
             <input type="date" name="tanggal" value="<?php echo $data['tanggal']; ?>" required>
             <button type="submit" name="update">Update</button>
         </form>
+        <br>
         <p><a href="riwayat.php">⬅️ Kembali ke Riwayat</a></p>
     </div>
 </body>

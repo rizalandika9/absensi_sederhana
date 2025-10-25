@@ -41,6 +41,7 @@ $siswa = mysqli_query($conn, "SELECT * FROM siswa ORDER BY nama ASC");
         <input type="text" name="nama" required placeholder="Masukkan nama baru">
         <button type="submit" name="update">Update</button>
     </form>
+    <br>
     <p><a href="index.php">⬅️ Kembali ke Absensi</a></p>
 </div>
 </body>
