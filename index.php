@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <header>
-        <img src="images/logo.png" alt="Logo Techno Informatika" style="height:48px; margin-right:12px;">
+        <img src="img/logo techno.jpg" alt="Logo Techno Informatika" style="height:48px; margin-right:12px;">
         <h1>Techno Informatika - Sistem Absensi</h1>
     </header>
 
